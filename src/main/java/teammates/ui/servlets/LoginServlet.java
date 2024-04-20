@@ -1,5 +1,6 @@
 package teammates.ui.servlets;
 
+import io.github.pixee.security.Newlines;
 import java.io.IOException;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,7 +35,7 @@ public class LoginServlet extends AuthServlet {
         nextUrl = resp.encodeRedirectURL(nextUrl.replace("\r\n", ""));
         if (Config.isDevServerLoginEnabled()) {
             resp.setStatus(HttpStatus.SC_MOVED_PERMANENTLY);
-            resp.setHeader("Location", "/devServerLogin?nextUrl=" + nextUrl.replace("&", "%26"));
+            resp.setHeader("Location", Newlines.stripAll("/devServerLogin?nextUrl=" + nextUrl.replace("&", "%26")));
             log.request(req, HttpStatus.SC_MOVED_PERMANENTLY, "Redirect to dev server login page");
             return;
         }
