@@ -1,5 +1,7 @@
 package teammates.common.util;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -17,7 +19,7 @@ public class Url {
         // parse and validate the urlString with the built-in URL object
         URL url = null;
         try {
-            url = new URL(urlString);
+            url = Urls.create(urlString, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         } catch (MalformedURLException e) {
             assert false : "MalformedURLException for [" + urlString + "]: " + e.getMessage();
         }
