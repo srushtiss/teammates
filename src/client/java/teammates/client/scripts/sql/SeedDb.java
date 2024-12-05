@@ -1,6 +1,7 @@
 package teammates.client.scripts.sql;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -114,7 +115,7 @@ public class SeedDb extends DatastoreClient {
         List<String> notificationUuids = new ArrayList<>();
         Map<String, Instant> notificationEndTimes = new HashMap<>();
 
-        Random rand = new Random();
+        Random rand = new SecureRandom();
 
         for (int j = 0; j < constNotificationSize; j++) {
             UUID notificationUuid = UUID.randomUUID();
