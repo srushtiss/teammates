@@ -1,6 +1,7 @@
 package teammates.ui.servlets;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.Random;
 
 import jakarta.servlet.Filter;
@@ -42,7 +43,7 @@ public class RequestTraceFilter implements Filter {
         if (requestId == null) {
             // Generate random hexadecimal string of length 32
             byte[] resBuf = new byte[16];
-            new Random().nextBytes(resBuf);
+            new SecureRandom().nextBytes(resBuf);
             traceId = Hex.encodeHexString(resBuf);
         } else {
             // X-Cloud-Trace-Context header is in form of TRACE_ID/SPAN_ID;o=TRACE_TRUE

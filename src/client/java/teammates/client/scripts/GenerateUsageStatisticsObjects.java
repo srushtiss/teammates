@@ -1,5 +1,6 @@
 package teammates.client.scripts;
 
+import java.security.SecureRandom;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Random;
@@ -28,7 +29,7 @@ public class GenerateUsageStatisticsObjects extends DatastoreClient {
     @Override
     protected void doOperation() {
         Instant inst = Instant.now();
-        Random rand = new Random();
+        Random rand = new SecureRandom();
 
         for (int i = 1; i <= NUM_OF_STATISTICS_OBJECTS; i++) {
             Instant endTime = TimeHelper.getInstantNearestHourBefore(inst);
