@@ -1,5 +1,6 @@
 package teammates.ui.servlets;
 
+import io.github.pixee.security.Newlines;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -54,7 +55,7 @@ public class OriginCheckFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
 
         if (Config.IS_DEV_SERVER) {
-            response.setHeader("Access-Control-Allow-Origin", Config.APP_FRONTEND_URL);
+            response.setHeader("Access-Control-Allow-Origin", Newlines.stripAll(Config.APP_FRONTEND_URL));
             response.setHeader("Access-Control-Allow-Methods", ALLOWED_HTTP_METHODS);
             response.setHeader("Access-Control-Allow-Headers", ALLOWED_HEADERS);
             response.setHeader("Access-Control-Allow-Credentials", "true");
